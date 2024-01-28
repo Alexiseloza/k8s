@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod 
+
+metadata:
+  name: my-pod-server
+  labels:
+   apps: my-app
+   tier: front
+
+spec:
+  containers:
+  - name: my-nginx-cont
+    image: nginx
+
+
+---
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: my-pod-apache
+  labels:
+   apps: my-apache
+   tier: apache
+
+spec:
+  containers:
+  - name: my-apache-cont
+    image: httpd
+    

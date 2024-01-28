@@ -1,0 +1,5 @@
+My  Apache Maven 3.6.3
+Maven home: /usr/share/maven
+Java version: 17.0.6, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-17-oracle   <= path de maven in locale
+Default locale: es_AR, platform encoding: UTF-8
+OS name: "linux", version: "6.5.0-15-generic", arch: "amd64", family: "unix"
