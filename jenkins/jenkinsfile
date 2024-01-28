@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying..'
+                sh 'mvn deploy'
+            }
+        }
+
+        stage('GitHub Push') {
+            steps {
+                echo 'Pushing to GitHub..'
+                withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USERNAME')]) {
+                    sh 'git config --global user.name "${GITHUB_USERNAME}"'
+                    sh 'git config --global user.email "${GITHUB_USERNAME}@example.com"'
+                    sh 'git add .'
+                    sh 'git commit -m "Deployed to GitHub"'
+                    sh 'git push https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/alexislozak8s.git'
+                }
+            }
+        }
+    }
+}
